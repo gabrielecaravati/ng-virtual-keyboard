@@ -60,32 +60,34 @@
 	        attach: function (element, config, inputCallback) {
 	            var newConfig = clone(VKI_CONFIG);
 
-	            config = config || {};
+	            if (!newConfig.isMobile) {
+	                config = config || {};
 
-	            for (var attr in config) {
-	                if (config.hasOwnProperty(attr)) {
-	                    newConfig[attr] = config[attr];
+	                for (var attr in config) {
+	                    if (config.hasOwnProperty(attr)) {
+	                        newConfig[attr] = config[attr];
+	                    }
 	                }
-	            }
 
-	            newConfig.accepted = config.accepted || inputCallback;
+	                newConfig.accepted = config.accepted || inputCallback;
 
-	            //Start Tesar (usando if else if permette di usare anche i layout non custom
-	            if (newConfig.customLayout)
-				{
-	                newConfig.customLayout.default = newConfig.customLayout[newConfig.tsLayout];
-				}
-	            //End Tesar
+	                //Start Tesar (usando if else if permette di usare anche i layout non custom
+	                if (newConfig.customLayout)
+				    {
+	                    newConfig.customLayout.default = newConfig.customLayout[newConfig.tsLayout];
+				    }
+	                //End Tesar
 
-	            var keyboard = $(element).keyboard(newConfig);
+	                var keyboard = $(element).keyboard(newConfig);
 
-	            if (keyboard && newConfig.extensions) {
-	                for (var extension in newConfig.extensions) {
-	                    var extConfig = newConfig.extensions[extension];
-	                    if (extConfig) {
-	                        keyboard[extension](extConfig);
-	                    } else {
-	                        keyboard[extension]();
+	                if (keyboard && newConfig.extensions) {
+	                    for (var extension in newConfig.extensions) {
+	                        var extConfig = newConfig.extensions[extension];
+	                        if (extConfig) {
+	                            keyboard[extension](extConfig);
+	                        } else {
+	                            keyboard[extension]();
+	                        }
 	                    }
 	                }
 	            }
