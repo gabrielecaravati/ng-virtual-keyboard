@@ -119,6 +119,10 @@
 		                    ngModelCtrl.$setViewValue(elements[0].value);
 		                });
 		            });
+					
+					scope.$on('$destroy', function() {
+						$(elements[0]).getkeyboard().destroy();
+					});
 		        }
 		    };
 		}]);
