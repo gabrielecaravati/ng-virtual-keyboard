@@ -131,7 +131,10 @@
 		            });
 					
 					scope.$on('$destroy', function() {
-						$(elements[0]).getkeyboard().destroy();
+						var keyboard = $(elements[0]).getkeyboard();
+						if (typeof(keyboard) !== 'undefined') {
+							keyboard.destroy();
+						}
 					});
 		        }
 		    };
